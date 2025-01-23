@@ -1,5 +1,6 @@
 package com.tokioschool.spring.di.controllers;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 import org.springframework.web.bind.annotation.GetMapping;
@@ -31,5 +32,12 @@ public class SomeApiController {
 	public Product byIdHandler(@PathVariable("id") Long id) {
 		log.info("id {}",id);
 		return productService.getById(id);
+	}
+	
+	@GetMapping("/increment/{add}")
+	//@RequestMapping(method = RequestMethod.GET, value = "/{id}")
+	public List<Product> incrementHandler(@PathVariable("add") BigDecimal increment) {
+		log.info("increment {}",increment);
+		return productService.incrementPrice(increment);
 	}
 }

@@ -32,5 +32,14 @@ public class Product {
 	
 	private BigDecimal price;
 	
+	@Override
+	public Object clone() {
+		try {
+			return super.clone();
+		}catch(CloneNotSupportedException e) {
+			return new Product(id,name,description,price);
+		}
+		
+	}
 }
 	

@@ -38,4 +38,14 @@ public class ProductServiceImpl implements ProductService{
 	public Product getById(Long id) {
 		return producReposiroty.findById(id).orElseGet(() -> null);
 	}
+
+	@Override
+	public List<Product> incrementPrice(BigDecimal increment) {
+
+		return producReposiroty.findAll().stream().map( p -> {
+			Product productTemp = (Product) p.clone();
+			productTemp.setPrice(productTemp.getPrice().add(increment));
+			return productTemp;
+		}).toList();
+	}
 }
